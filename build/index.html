@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Jesse Showalter Starter Kit</title>
+    <title>NBA2k21 Web Animation demo</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
@@ -27,22 +27,35 @@
     <link rel="stylesheet" href="assets/css/main.min.css" />
 </head>
 <body>
-  <section id="page-home">
-      <div class="wrapper-starter">
-          <h1>Jesse Showalter Starter Project</h1>
-          <p>A cool way to start your next project</p>
-          <a class="button" target="_blank" href="https://github.com/jesseshowalter/jesseshowalter-starter-project">Download it</a>
-          <h4>Check out the series where it all started</h4>
-          <div class="flex-video">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLrtjkLnNjGHu7QIc8jN7hZmuP6wMby2QZ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-          <div class="author">
-              <img class="avatar" src="assets/img/avatar.jpg" alt="">
-              <p><strong>Jesse Showalter</strong></p>
-              <a target="_blank" href="https://twitter.com/iamjesseshow">@iamjesseshow</a>
-          </div>
+  <section id="canvas-wrapper">
+      <canvas id="canvas"></canvas>
+  </section>
+  <section>
+      <div class="wrapper">
+        <div id="navbar">
+          <svg class="brand" width="141" height="33" viewBox="0 0 226 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.228516 1.34976H8.41852L19.2085 26.6998V1.34976H28.8285V53.9998H20.9635L10.1735 26.6998V53.9998H0.228516V1.34976Z" fill="white"/>
+          <path d="M36.0141 1.34976H49.7291C53.1524 1.34976 56.0557 1.7181 58.4391 2.45477C60.8657 3.1481 62.8157 4.5131 64.2891 6.54977C65.7624 8.58643 66.4991 11.4464 66.4991 15.1298C66.4991 18.2498 65.8274 20.6764 64.4841 22.4098C63.1407 24.1431 61.2341 25.2481 58.7641 25.7248C61.7974 26.1148 64.1157 27.3931 65.7191 29.5598C67.3224 31.7264 68.1241 34.6731 68.1241 38.3998C68.1241 48.7998 62.8157 53.9998 52.1991 53.9998H36.0141V1.34976ZM49.9241 22.4098C52.3941 22.4098 54.0624 21.8464 54.9291 20.7198C55.8391 19.5931 56.2941 17.8381 56.2941 15.4548C56.2941 13.3748 55.7307 11.8148 54.6041 10.7748C53.4774 9.69143 51.8307 9.14977 49.6641 9.14977H47.6491V22.4098H49.9241ZM50.1191 45.8748C52.5891 45.8748 54.3224 45.2681 55.3191 44.0548C56.3591 42.7981 56.8791 40.8481 56.8791 38.2048C56.8791 35.2148 56.3591 33.1131 55.3191 31.8998C54.3224 30.6864 52.5674 30.0798 50.0541 30.0798H47.6491V45.8748H50.1191Z" fill="white"/>
+          <path d="M80.86 1.34976H94.12L103.935 53.9998H93.21L91.455 42.8848H83.72L81.9 53.9998H70.915L80.86 1.34976ZM90.35 35.9298L87.555 15.3898L84.76 35.9298H90.35Z" fill="white"/>
+          <path d="M107.366 46.3298L119.976 26.9598L120.756 25.7898C122.402 23.3198 123.616 21.2614 124.396 19.6148C125.176 17.9248 125.566 16.1698 125.566 14.3498C125.566 12.8764 125.262 11.7714 124.656 11.0348C124.092 10.2548 123.269 9.86477 122.186 9.86477C120.539 9.86477 119.391 10.5148 118.741 11.8148C118.091 13.0714 117.766 14.8264 117.766 17.0798V19.6798H107.236V16.8848C107.236 11.9448 108.427 8.00143 110.811 5.05477C113.237 2.1081 116.964 0.634766 121.991 0.634766C126.627 0.634766 130.159 1.8481 132.586 4.27477C135.056 6.70143 136.291 10.1248 136.291 14.5448C136.291 16.5381 135.966 18.4231 135.316 20.1998C134.709 21.9764 133.972 23.5798 133.106 25.0098C132.239 26.4398 130.896 28.4764 129.076 31.1198L119.456 45.4848H134.861V53.9998H107.366V46.3298Z" fill="white"/>
+          <path d="M141.339 1.34976H152.974V22.8648L161.814 1.34976H173.189L163.439 25.1398L173.644 53.9998H161.814L154.209 30.7298L152.974 32.8098V53.9998H141.339V1.34976Z" fill="white"/>
+          <path d="M176.334 46.3298L188.944 26.9598L189.724 25.7898C191.371 23.3198 192.584 21.2614 193.364 19.6148C194.144 17.9248 194.534 16.1698 194.534 14.3498C194.534 12.8764 194.231 11.7714 193.624 11.0348C193.061 10.2548 192.238 9.86477 191.154 9.86477C189.508 9.86477 188.359 10.5148 187.709 11.8148C187.059 13.0714 186.734 14.8264 186.734 17.0798V19.6798H176.204V16.8848C176.204 11.9448 177.396 8.00143 179.779 5.05477C182.206 2.1081 185.933 0.634766 190.959 0.634766C195.596 0.634766 199.128 1.8481 201.554 4.27477C204.024 6.70143 205.259 10.1248 205.259 14.5448C205.259 16.5381 204.934 18.4231 204.284 20.1998C203.678 21.9764 202.941 23.5798 202.074 25.0098C201.208 26.4398 199.864 28.4764 198.044 31.1198L188.424 45.4848H203.829V53.9998H176.334V46.3298Z" fill="white"/>
+          <path d="M215.053 12.0748C214.576 12.3348 213.32 12.8981 211.283 13.7648C210.936 13.8948 210.395 14.1114 209.658 14.4148C208.921 14.7181 208.315 14.9998 207.838 15.2598V7.19977C213.038 4.5131 216.223 2.5631 217.393 1.34976H225.908V53.9998H215.053V12.0748Z" fill="white"/>
+          </svg>
+        <button class="button" name="button"> Play now</button>
+        </div>
       </div>
   </section>
+  <section>
+    <div class="wrapper" >
+      <div id="footer">
+        <p>Achraf garai</p>
+        <p>Animation demo</p>
+        <p>Made using Rive</p>
+      </div>
+    </div>
+  </section>
+  <script src="https://unpkg.com/rive-js@0.7.6/dist/rive.min.js"></script>
   <script src="./assets/js/vendors.js"></script>
   <script src="./assets/js/app.js"></script>
 </body>
